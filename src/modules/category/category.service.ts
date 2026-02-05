@@ -1,9 +1,9 @@
 import { prisma } from "../../../config/db";
-import { Prisma, Post } from "../../../generated/prisma/client";
+import { Prisma, Category } from "../../../generated/prisma/client";
 
 
-const createCategory = async (payload: Prisma.PostCreateInput): Promise<Post> => {
-    const result = await prisma.post.create({
+const createCategory = async (payload: Prisma.CategoryCreateInput): Promise<Category> => {
+    const result = await prisma.category.create({
         data: payload,
         include: {
             author: {
@@ -21,9 +21,5 @@ const createCategory = async (payload: Prisma.PostCreateInput): Promise<Post> =>
 
 export const CategoryService = {
     createCategory,
-    // getAllPosts,
-    // getPostById,
-    // updatePost,
-    // deletePost,
-    // getBlogStat
+    
 }

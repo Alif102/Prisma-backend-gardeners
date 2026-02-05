@@ -12,9 +12,5 @@ const createCategory = async (req: Request, res: Response) => {
 
 export const CategoryController = {
     createCategory,
-    // getAllPosts,
-    // getPostById,
-    // updatePost,
-    // deletePost,
-    // getBlogStat
+  
 }
