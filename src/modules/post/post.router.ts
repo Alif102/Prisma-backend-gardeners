@@ -13,6 +13,7 @@ router.post(
 
 router.get("/", PostController.getAllPosts);
 router.get("/:id", PostController.getPostById);
+router.get("/category/:id", PostController.getPostsByCategory);
 router.patch("/:id", PostController.updatePost);
 router.delete("/:id", PostController.deletePost);
 

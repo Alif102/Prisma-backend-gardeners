@@ -5,6 +5,7 @@ import { Prisma, Post } from "../../../generated/prisma/client";
 const createPost = async (payload: Prisma.PostCreateInput): Promise<Post> => {
     const result = await prisma.post.create({
         data: payload,
+        
         include: {
             author: {
                 select: {
@@ -12,8 +13,10 @@ const createPost = async (payload: Prisma.PostCreateInput): Promise<Post> => {
                     name: true,
                     email: true
                 }
-            }
-        }
+            },
+            category: true
+        },
+        
     })
 
     return result;
@@ -90,6 +93,22 @@ const getPostById = async (id: number) => {
         });
     })
 };
+const getPostsByCategory = async (categoryId: number): Promise<Post[]> => {
+  const posts = await prisma.post.findMany({
+    where: {
+      categoryId: categoryId, // filter by categoryId
+    },
+    include: {
+      author: true, // include author relation
+    },
+    orderBy: {
+      createdAt: "desc", // latest post first
+    },
+  });
+
+  return posts;
+};
+
 
 const updatePost = async (id: number, data: Partial<any>) => {
     return prisma.post.update({ where: { id }, data });
@@ -153,6 +172,7 @@ export const PostService = {
     createPost,
     getAllPosts,
     getPostById,
+    getPostsByCategory,
     updatePost,
     deletePost,
     getBlogStat

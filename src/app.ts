@@ -20,7 +20,7 @@ app.use(
   })
 );
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/category", CategoryRouter);
+app.use("/api/v1/categories", CategoryRouter);
 app.use("/api/v1/post", postRouter);
 app.use("/api/v1/auth", authRouter);
 // Default route for testing

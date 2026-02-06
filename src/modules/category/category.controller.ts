@@ -9,8 +9,14 @@ const createCategory = async (req: Request, res: Response) => {
         res.status(500).send(error)
     }
 }
+const getAllCategories = async (req: Request, res: Response) => {
+  const result = await CategoryService.getAllCategories();
+  res.json(result);
+};
+
 
 export const CategoryController = {
     createCategory,
+    getAllCategories
   
 }

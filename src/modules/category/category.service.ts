@@ -18,8 +18,17 @@ const createCategory = async (payload: Prisma.CategoryCreateInput): Promise<Cate
 
     return result;
 }
+const getAllCategories = async () => {
+  return prisma.category.findMany({
+    include: {
+      author: true,
+    },
+  });
+};
+
 
 export const CategoryService = {
     createCategory,
+    getAllCategories
     
 }

@@ -30,7 +30,16 @@ const getPostById = async (req: Request, res: Response) => {
     if (!post) return res.status(404).json({ error: "Post not found" });
     res.json(post);
 };
-
+const getPostsByCategory = async (req: Request, res: Response) => {
+  try {
+    const categoryId = Number(req.params.id); // /posts/category/:id
+    const posts = await PostService.getPostsByCategory(categoryId);
+    res.json({ data: posts });
+  } catch (error) {
+    console.error(error);
+  
+  }
+};
 const updatePost = async (req: Request, res: Response) => {
     const post = await PostService.updatePost(Number(req.params.id), req.body);
     res.json(post);
@@ -55,6 +64,7 @@ export const PostController = {
     createPost,
     getAllPosts,
     getPostById,
+    getPostsByCategory,
     updatePost,
     deletePost,
     getBlogStat
